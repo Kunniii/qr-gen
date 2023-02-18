@@ -38,9 +38,6 @@ function App() {
   };
   return (
     <div>
-      <h1 className="absolute left-0 right-0 top-14 mx-auto flex justify-center text-5xl font-bold text-white drop-shadow-lg">
-        Create QR Code
-      </h1>
       <img
         className="h-96 w-full object-cover duration-200"
         src={background}

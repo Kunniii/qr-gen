@@ -1,4 +1,4 @@
-import { QRCodeSVG } from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 import { useState } from "react";
 import background from "./assets/background.jpg";
 import chill from "./assets/chill.jpg";
@@ -13,11 +13,19 @@ function App() {
     />
   );
 
+  const downloadCanvas = () => {
+    if (QRCode) {
+      let canvas = document.getElementsByTagName("canvas")[0];
+      let image = canvas.toDataURL("image/png");
+      window.location.href = image;
+    }
+  };
+
   const handleKeyPress = (event) => {
     let value = event.target.value;
     if (value !== "") {
       let qrCode = (
-        <QRCodeSVG
+        <QRCodeCanvas
           value={value}
           level="H"
           size={350}
@@ -34,24 +42,41 @@ function App() {
         Create QR Code
       </h1>
       <img
-        className="h-96 w-full object-cover"
+        className="h-96 w-full object-cover duration-200"
         src={background}
         alt=""
       />
-      <div className="absolute top-36 left-0 right-0 mx-auto flex justify-center">
-        <div className="rounded-xl border bg-white px-5 pb-5 pt-5">
+      <div className="absolute top-36 left-0 right-0 mx-auto flex justify-center duration-200">
+        <div className="rounded-xl border bg-white px-5 pb-5 pt-5 duration-200">
           {QRCode ? QRCode : dummyImage}
         </div>
       </div>
 
-      <div className="text-center">
-        <input
-          className="mt-44 w-96 rounded border py-4 px-4 focus:outline-none"
-          onChange={handleKeyPress}
-          placeholder="Enter some value here..."
-          type="text"
-        />
-      </div>
+      {QRCode ? (
+        <div className="mt-44 text-center duration-200">
+          <input
+            className="w-80 rounded-xl border p-4 text-lg duration-200 focus:outline-none"
+            onChange={handleKeyPress}
+            placeholder="Enter some value here..."
+            type="text"
+          />
+          <button
+            onClick={downloadCanvas}
+            className="ml-1 rounded-xl bg-green-500 py-4 px-6 duration-200 active:bg-green-700"
+          >
+            <i className="fa fa-download text-xl text-white duration-200"></i>
+          </button>
+        </div>
+      ) : (
+        <div className="mt-44 text-center duration-200">
+          <input
+            className="w-96 rounded-xl border p-2 text-lg duration-200 hover:p-4 focus:p-4 focus:outline-none"
+            onChange={handleKeyPress}
+            placeholder="Enter some value here..."
+            type="text"
+          />
+        </div>
+      )}
     </div>
   );
 }

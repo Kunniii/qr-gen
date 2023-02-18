@@ -14,18 +14,18 @@ function App() {
   );
 
   const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      let value = event.target.value.trim();
-      if (value !== "") {
-        let qrCode = (
-          <QRCodeSVG
-            value={value}
-            level="H"
-            size={350}
-          />
-        );
-        setQRCode(qrCode);
-      }
+    let value = event.target.value;
+    if (value !== "") {
+      let qrCode = (
+        <QRCodeSVG
+          value={value}
+          level="H"
+          size={350}
+        />
+      );
+      setQRCode(qrCode);
+    } else {
+      setQRCode(null);
     }
   };
   return (
@@ -47,7 +47,7 @@ function App() {
       <div className="text-center">
         <input
           className="mt-44 w-96 rounded border py-4 px-4 focus:outline-none"
-          onKeyDown={handleKeyPress}
+          onChange={handleKeyPress}
           placeholder="Enter some value here..."
           type="text"
         />

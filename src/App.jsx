@@ -52,14 +52,14 @@ function App() {
       {QRCode ? (
         <div className="mt-44 text-center duration-200">
           <input
-            className="w-80 rounded-xl border p-4 text-lg duration-200 focus:outline-none"
+            className="w-80 rounded-xl border px-4 py-1 text-lg duration-200 focus:outline-none"
             onChange={handleKeyPress}
             placeholder="Enter some value here..."
             type="text"
           />
           <button
             onClick={downloadCanvas}
-            className="ml-1 rounded-xl bg-green-500 py-4 px-6 duration-200 active:bg-green-700"
+            className="ml-1 rounded-xl bg-green-500 py-1 px-6 duration-200 active:bg-green-600"
           >
             <i className="fa fa-download text-xl text-white duration-200"></i>
           </button>
@@ -67,7 +67,7 @@ function App() {
       ) : (
         <div className="mt-44 text-center duration-200">
           <input
-            className="w-96 rounded-xl border p-2 text-lg duration-200 hover:p-4 focus:p-4 focus:outline-none"
+            className="w-96 rounded-xl border px-4 text-lg duration-200 hover:py-1 focus:py-1 focus:outline-none"
             onChange={handleKeyPress}
             placeholder="Enter some value here..."
             type="text"
